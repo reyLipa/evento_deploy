@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificación de Ingreso</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        form { margin-bottom: 20px; }
+        input { padding: 10px; width: 200px; }
+        button { padding: 10px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        .mensaje { font-size: 20px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2>Verificación de Ingreso</h2>
+
+<form th:action="@{/inscripcion/verificar-ingreso}" method="post">
+    <input type="text" name="dni" placeholder="Ingrese su DNI" required>
+    <button type="submit">Verificar</button>
+</form>
+
+<div class="mensaje" th:text="${mensaje}"></div>
+
+</body>
+</html>
