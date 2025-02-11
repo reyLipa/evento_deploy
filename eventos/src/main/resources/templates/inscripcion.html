@@ -23,5 +23,16 @@
 
 <div class="mensaje" th:text="${mensaje}"></div>
 
+<div class="fechas" th:if="${fechasInscripcion != null and !fechasInscripcion.isEmpty()}">
+    <h3>Fechas de Participación al Evento:</h3>
+    <ul>
+        <li th:each="fecha : ${fechasInscripcion}" th:text="${fecha}"></li>
+    </ul>
+</div>
+<div>
+    <p>
+        <a th:href="@{/participantes/verificar-ingreso}" class="btn btn-primary">Volver</a>
+    </p>
+</div>
 </body>
 </html>

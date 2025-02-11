@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -30,8 +31,11 @@ public class InscripcionController {
     @GetMapping("/obtenerPorId/{id}")
     public Inscripcion obtenerInscripcionPorId(@PathVariable Long id){
         return inscripcionService.obtenerInscripcionPorId(id);
-
     }
+//    @GetMapping("/obtenerPorId/{fecha}")
+//    public Inscripcion obtenerInscripcionFecha(@PathVariable LocalDate fecha){
+//        return inscripcionService.obtenerInscripcionFecha(fecha);
+//    }
     @DeleteMapping("eliminarInscripcion/{id}")
     public void eliminarPorId(@PathVariable Long id){
         inscripcionService.eliminarPorId(id);
@@ -62,9 +66,25 @@ public class InscripcionController {
         return "inscripcion";
     }
 
+//    @PostMapping("/verificar-ingreso")
+//    public String verificarIngreso(@RequestParam String dni, Model model) {
+//        boolean puedeIngresar = inscripcionService.verificarIngreso(dni);
+//
+//        if (puedeIngresar) {
+//            model.addAttribute("mensaje", "✅ Acceso permitido");
+//
+//        } else {
+//            model.addAttribute("mensaje", "❌ Acceso denegado");
+//        }
+//
+////        return "verificar-ingreso";
+//        return "inscripcion";
+//    }
+
     @PostMapping("/verificar-ingreso")
     public String verificarIngreso(@RequestParam String dni, Model model) {
         boolean puedeIngresar = inscripcionService.verificarIngreso(dni);
+        List<LocalDate> fechasInscripcion = inscripcionService.obtenerFechasInscripcion(dni);
 
         if (puedeIngresar) {
             model.addAttribute("mensaje", "✅ Acceso permitido");
@@ -72,7 +92,8 @@ public class InscripcionController {
             model.addAttribute("mensaje", "❌ Acceso denegado");
         }
 
-//        return "verificar-ingreso";
+        model.addAttribute("fechasInscripcion", fechasInscripcion);
+
         return "inscripcion";
     }
 

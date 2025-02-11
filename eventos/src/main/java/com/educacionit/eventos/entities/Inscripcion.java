@@ -1,6 +1,7 @@
 package com.educacionit.eventos.entities;
 
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.time.LocalDate;
 
