@@ -16,6 +16,13 @@ public class InscripcionController {
     @Autowired
     private InscripcionService inscripcionService;
 
+    @GetMapping
+    public String mostrarFormulario2(Model model) {
+        model.addAttribute("participantes", inscripcionService.listarParticipantes());
+        model.addAttribute("inscripciones", inscripcionService.obtenerInscripcion());
+        return "listas";
+    }
+
     @GetMapping("/verificar")
     public String vericar(){
         return "inscripcion";
@@ -95,6 +102,17 @@ public class InscripcionController {
         model.addAttribute("fechasInscripcion", fechasInscripcion);
 
         return "inscripcion";
+
     }
+
+    ///prueba
+
+
+    @PostMapping("/inscribir")
+    public String inscribir(@RequestParam Long participanteId) {
+        inscripcionService.inscribirParticipante(participanteId);
+        return "redirect:/inscripcion";
+    }
+
 
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inscripción de Participantes</title>
+</head>
+<body>
+<h1>Inscribir Participante</h1>
+
+<form action="@{/inscripcion/inscribir}" method="post">
+    <label for="participante">Selecciona un participante:</label>
+    <select name="participanteId" id="participante">
+        <option th:each="participante : ${participantes}"
+                th:value="${participante.id}"
+                th:text="${participante.nombre + ' ' + participante.apellido}">
+        </option>
+    </select>
+    <button type="submit">Inscribir</button>
+</form>
+
+<h2>Participantes Inscritos</h2>
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Fecha de Inscripción</th>
+    </tr>
+    <tr th:each="inscrito : ${inscripciones}">
+        <td th:text="${inscrito.participante.nombre + ' ' + inscrito.participante.apellido}"></td>
+        <td th:text="${inscrito.fechaInscripcion}"></td>
+    </tr>
+</table>
+</body>
+</html>
