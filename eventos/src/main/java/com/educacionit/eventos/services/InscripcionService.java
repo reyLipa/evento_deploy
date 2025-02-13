@@ -75,5 +75,6 @@ public class InscripcionService {
             inscripcionRepository.save(inscripcion);
         }
     }
+
 }
 

@@ -12,4 +12,5 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> 
     boolean existsByParticipanteDni(String dni);
     //Optional<Inscripcion> findByFecha(LocalDate fechaInscripcion);
     List<Inscripcion> findByParticipante_Dni(String dni);
+
 }
